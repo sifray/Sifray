@@ -3,7 +3,7 @@
     package="com.develop.p2s.sifray">
 
     <uses-sdk
-        android:minSdkVersion="8"
+        android:minSdkVersion="15"
         android:targetSdkVersion="17" />
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -11,23 +11,21 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
-    <!-- <android:uses-permission android:name="android.permission.READ_PHONE_STATE" /> -->
-    <!-- <android:uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> -->
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity" >
+        <activity android:name=".MainActivity" />
+        <activity android:name=".TestGetlocation" />
+        <activity android:name=".TestMapboxActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TestGetlocation" />
-        <activity android:name=".TestMapboxActivity"/>
         <activity android:name=".TestSlidingdrawer" />
         <activity android:name=".TestRecycleview" />
 

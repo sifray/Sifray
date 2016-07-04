@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Sifray</string>
+    <string name="accessToken">pk.eyJ1Ijoic2lmcmF5IiwiYSI6ImNpcTJuaTdvbzAxN3pmaG5uOWdjNHRycGUifQ.4TjI07VJw-cc5ilMuHVkow</string>
 </resources>
