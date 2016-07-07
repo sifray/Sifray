@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    tools:context="com.develop.p2s.sifray.TestGetdata">
+
+    <!-- Main ListView
+         Always give id value as list(@android:id/list)
+    -->
+    <ListView
+        android:id="@android:id/list"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>
+    <!--<TextView-->
+        <!--android:id="@+id/idnya"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="id"-->
+        <!--/>-->
+    <!--<TextView-->
+        <!--android:layout_below="@+id/idnya"-->
+        <!--android:id="@+id/isinya"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="is"-->
+        <!--/>-->
+</RelativeLayout>
