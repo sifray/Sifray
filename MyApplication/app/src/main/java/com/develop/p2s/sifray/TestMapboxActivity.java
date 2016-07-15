@@ -24,7 +24,13 @@ public class TestMapboxActivity extends AppCompatActivity {
     private Button testButton;
     FloatingActionButton floatingActionButton;
     LocationServices locationServices;
-    MarkerOptions mark1;
+    MarkerOptions mark [] = new MarkerOptions[30];
+    String dataMark[][] = new String[30][4];
+    // nama, latitude, longitude
+    //kumpulan data
+
+    //end
+
     MapboxMap mapboxMap;
 
     protected void mulai(MapboxMap map) {
@@ -46,7 +52,10 @@ public class TestMapboxActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test_mapbox);
 
-
+        dataMark[0][0] = "Pendulum 360";
+        dataMark[0][1] = "7.882657";
+        dataMark[0][2] = "112.525811";
+        dataMark[0][3] = "DESKRIPSI Pendulum 360";
 
         testButton = (Button) findViewById(R.id.btn);
         testButton.setOnClickListener(new View.OnClickListener() {
@@ -65,10 +74,10 @@ public class TestMapboxActivity extends AppCompatActivity {
             public void onMapReady(final MapboxMap mapboxMap) {
                 mapboxMap.setStyleUrl("mapbox://styles/mapbox/streets-v9");
                 // Customize map with markers, polylines, etc.
-                mark1 = new MarkerOptions()
-                        .position(new LatLng(-7.884501, 112.524800)).title("TEST JATIM PARK")
-                        .snippet("o aza ya kan~");
-                mapboxMap.addMarker(mark1);
+                mark[0] = new MarkerOptions()
+                        .position(new LatLng(-(Double.parseDouble(dataMark[0][1])), Double.parseDouble(dataMark[0][2]))).title(dataMark[0][0])
+                        .snippet(dataMark[0][3]);
+                mapboxMap.addMarker(mark[0]);
                 mulai(mapboxMap);
 
             }

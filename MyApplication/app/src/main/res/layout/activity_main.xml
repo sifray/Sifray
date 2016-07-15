@@ -9,9 +9,33 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.develop.p2s.sifray.MainActivity">
 
-    <TextView
+
+    <Button
+        android:id="@+id/satu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World! " />
+        android:text="ikan"/>
+    <!--android:layout_marginTop="40dp"-->
 
+    <Button
+        android:id="@+id/dua"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ayam"/>
+
+    <LinearLayout
+        android:id="@+id/tiga"
+        android:layout_below="@+id/dua"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ikan"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ayam"/>
+    </LinearLayout>
 </RelativeLayout>
