@@ -4,10 +4,15 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
 import com.mapbox.mapboxsdk.annotations.Marker;
 import com.mapbox.mapboxsdk.annotations.MarkerOptions;
 import com.mapbox.mapboxsdk.camera.CameraPosition;
@@ -46,32 +51,46 @@ public class TestMapboxActivity extends AppCompatActivity {
                 .newCameraPosition(position), 7000);
         //batas iseng
     }
-
+    int x;
+    Firebase myFirebaseRef;
+    String ref;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test_mapbox);
 
-        dataMark[0][0] = "Pendulum 360";
-        dataMark[0][1] = "7.882657";
-        dataMark[0][2] = "112.525811";
-        dataMark[0][3] = "DESKRIPSI Pendulum 360";
+        //dataMark
+        x = 0;
+        //data0
+        dataMark[x][0] = "Pendulum 360";
+        dataMark[x][1] = "7.882657";
+        dataMark[x][2] = "112.525811";
+        dataMark[x][3] = "DESKRIPSI Pendulum 360";
 
+        //firebase
+        Firebase.setAndroidContext(this);
+        myFirebaseRef = new Firebase("https://sifray-dba59.firebaseio.com/");
+        ref = "data"+x;
+        onPause();
+        ambilData();
+        onResume();
         testButton = (Button) findViewById(R.id.btn);
         testButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d("Masook", dataMark[0][0]);
 
             }
         });
         // Create a mapView
         mapView = (MapView) findViewById(R.id.mapview);
+
         mapView.onCreate(savedInstanceState);
 
         mapView.getMapAsync(new OnMapReadyCallback() {
-
             @Override
             public void onMapReady(final MapboxMap mapboxMap) {
+
                 mapboxMap.setStyleUrl("mapbox://styles/mapbox/streets-v9");
                 // Customize map with markers, polylines, etc.
                 mark[0] = new MarkerOptions()
@@ -79,7 +98,6 @@ public class TestMapboxActivity extends AppCompatActivity {
                         .snippet(dataMark[0][3]);
                 mapboxMap.addMarker(mark[0]);
                 mulai(mapboxMap);
-
             }
 
         });
@@ -89,6 +107,21 @@ public class TestMapboxActivity extends AppCompatActivity {
     }
 
     // Add the mapView lifecycle to the activity's lifecycle methods
+    void ambilData(){
+        myFirebaseRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                System.out.println(snapshot.getValue());  //prints "Do you have data? You'll love Firebase."
+                dataMark[0][0] = snapshot.getValue() + "";
+                Log.d("Masook", dataMark[0][0]);
+
+            }
+
+            @Override
+            public void onCancelled(FirebaseError error) {
+            }
+        });
+    }
     @Override
     public void onResume() {
         super.onResume();
@@ -99,6 +132,7 @@ public class TestMapboxActivity extends AppCompatActivity {
     public void onPause() {
         super.onPause();
         mapView.onPause();
+
     }
 
     @Override
