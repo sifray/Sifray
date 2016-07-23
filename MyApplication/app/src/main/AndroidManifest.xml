@@ -23,18 +23,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity"></activity>
-        <activity android:name=".TestGetlocation" />
-        <activity android:name=".TestMapboxActivity">
+        <activity android:name=".TestGetlocation" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".TestMapboxActivity"></activity>
         <activity android:name=".TestSlidingdrawer" />
         <activity android:name=".TestRecycleview" />
         <!-- ERROR -->
-        <activity android:name=".TestGetdata"></activity>
+        <activity android:name=".TestGetdata"/>
         <!-- ERROR -->
         <service android:name="com.mapbox.mapboxsdk.telemetry.TelemetryService" />
         <!--
