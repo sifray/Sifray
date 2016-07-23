@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -41,7 +42,7 @@ public class TestGetdata extends ListActivity {
     ArrayList<HashMap<String, String>> productsList;
 
     // url to get all products list
-    private static String url_all_products = "http://jtp-guide.esy.es/api";
+    private static String url_all_products = "http://jtp-guide.esy.es/api/signin";
 
     // JSON Node names
     private static final String TAG_SUCCESS = "id";
@@ -144,11 +145,17 @@ public class TestGetdata extends ListActivity {
         protected String doInBackground(String... args) {
             // Building Parameters
             List<NameValuePair> params = new ArrayList<NameValuePair>();
+
+            params.add(new BasicNameValuePair("username", "ayam"));
+            params.add(new BasicNameValuePair("password", "ayam"));
+//            params.add(new BasicNameValuePair("nama", "ayam"));
+//            params.add(new BasicNameValuePair("profile", "ayam"));
+
             // getting JSON string from URL
-            JSONObject json = jParser.makeHttpRequest(url_all_products, "GET", params);
+            JSONObject json = jParser.makeHttpRequest(url_all_products, "POST", params);
 
             // Check your log cat for JSON reponse
-            //Log.d("All Products: ", json.toString());
+            Log.d("Ayam: Masook", json.toString());
 
             try {
                 // Checking for SUCCESS TAG
@@ -164,15 +171,20 @@ public class TestGetdata extends ListActivity {
                         JSONObject c = products.getJSONObject(i);
 
                         // Storing each json item in variable
-                        String id = c.getString(TAG_PID);
-                        String name = c.getString(TAG_NAME);
+//                        String id = c.getString(TAG_PID);
+//                        String name = c.getString(TAG_NAME);
+
+                        //post Test
+                        String status = c.getString("result");
+                        String pesan = c.getString("pesan");
+                        Log.d("All : Masook", json.toString());
 
                         // creating new HashMap
                         HashMap<String, String> map = new HashMap<String, String>();
 
                         // adding each child node to HashMap key => value
-                        map.put(TAG_PID, id);
-                        map.put(TAG_NAME, name);
+                        map.put(TAG_PID, status);
+                        map.put(TAG_NAME, pesan);
 
                         // adding HashList to ArrayList
                         productsList.add(map);
